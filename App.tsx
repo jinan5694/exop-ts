@@ -5,10 +5,13 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import type { NativeStackNavigationOptions, NativeStackScreenProps } from '@react-navigation/native-stack'
 
+import { ProfileScreen } from './pages/Profile';
 
-type RootStackParamList = {
+
+export type RootStackParamList = {
   Home: undefined
   Details: { id: string, visible?: boolean }
+  Profile: undefined
 }
 type HomeScreenProps = NativeStackScreenProps<RootStackParamList, 'Home'>
 
@@ -39,6 +42,9 @@ function DetailsScreen({ route, navigation }: DetailsScreenProps) {
       <Button mode="outlined" onPress={() => navigation.navigate('Home')} style={{ marginTop: 10 }}>
         Go to Home
       </Button>
+      <Button mode="outlined" onPress={() => navigation.navigate('Profile')} style={{ marginTop: 10 }}>
+        Go to Profile
+      </Button>
       <View style={{ marginTop: 10 }}>
         <Text>123</Text>
       </View>
@@ -66,6 +72,7 @@ function App() {
           },
         }}  />
         <Stack.Screen name="Details" component={DetailsScreen} initialParams={{ id: 'qwer' }}/>
+        <Stack.Screen name="Profile" component={ProfileScreen} options={{ title: 'My' }}/>
       </Stack.Navigator>
     </NavigationContainer>
   );
